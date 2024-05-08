@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,43 +15,47 @@ class PhoneBookTest {
     static void add()
     {
         phoneTime.add("Johnny Bungo","610-492-1992");
-        phoneTime.add("Johnny Brungo","611-492-1992");
+        phoneTime.add("Johnny Bungo","611-492-1992");
         phoneTime.add("Jonathan Brugo","720-492-1932");
         phoneTime.add("Sally Ride","111-111-1111");
         phoneTime.add("Jonathan Burgess","123-456-7890");
         phoneTime.add("Jonathan Burgess","123-123-1234");
         phoneTime.add("Johnny Bungo","330-492-1992");
-        assertFalse(phoneTime.getPhoneRecord().isEmpty());
     }
     @BeforeAll
-    static void addListEntry()
+    static void addMultipleEntriesAtOnce()
     {
-        List<String> workList = new ArrayList<String>();
         phoneTime.add("Newguy Newsly","191-232-4411","191-232-4412","191-232-4413");
-        assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
     }
     @Test
-    void addTest()
+    void addTests()
     {
-        assertFalse(phoneTime.getPhoneRecord().isEmpty());
-        assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
+        assertFalse(phoneTime.getPhoneRecord().isEmpty(), "Empty phonebook");
+        assertEquals(true, phoneTime.hasEntry("Newguy Newsly"), "Failed to addAll");
+        assertEquals(3,phoneTime.lookup("Johnny Bungo").size(),"Adding multiple numbers to one key " +
+                "over multiple method calls failed");
+        List<String> holdList = phoneTime.lookup("Johnny Bungo");
+        phoneTime.remove("Johnny Bungo");
+        phoneTime.add("Johnny Bungo",holdList);
+        assertEquals(holdList,phoneTime.lookup("Johnny Bungo"),"adding a list of String failed.");
     }
 
     @Test
     void lookup()
     {
         List<String> daList = phoneTime.getPhoneRecord().get("Newguy Newsly");
-        assertEquals(daList.stream().toList(), phoneTime.lookup("Newguy Newsly"));
+        assertEquals(daList.stream().toList(), phoneTime.lookup("Newguy Newsly"),"Lookup failure");
     }
     @Test
     void reverseLookUp()
     {
-        assertEquals("Newguy Newsly",phoneTime.reverseLookUp("191-232-4413"));
+        assertEquals("Newguy Newsly",phoneTime.reverseLookUp("191-232-4413")
+                ,"reverse-lookup failed");
     }
     @AfterAll
     static void remove()
     {
         phoneTime.remove("Newguy Newsly");
-        assertFalse(phoneTime.hasEntry("Newguy Newsly"));
+        assertFalse(phoneTime.hasEntry("Newguy Newsly"),"Removal failure.");
     }
 }

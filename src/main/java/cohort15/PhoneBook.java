@@ -60,6 +60,19 @@ public class PhoneBook {
             phoneRecord.replace(name,workingList);
         }
     }
+    public void add(String name, List<String> phoneNumbers)
+    {
+        //put the record in the map by key and values
+        if (!phoneRecord.containsKey(name)) {
+            phoneRecord.put(name, phoneNumbers);  //put the record in the map
+        }
+        else
+        {
+            List<String> workingList = phoneRecord.get(name);
+            workingList.addAll(phoneNumbers);
+            phoneRecord.replace(name,workingList);
+        }
+    }
 
     //Method to remove a person
     public void remove(String name)
