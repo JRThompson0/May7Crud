@@ -9,6 +9,15 @@ import java.util.*;
 //Key is String and values is arrayList of String
 
 public class PhoneBook {
+    public Map<String, List<String>> getPhoneRecord()
+    {
+        return phoneRecord;
+    }
+    public void setPhoneRecord(Map<String, List<String>> phoneRecord)
+    {
+        this.phoneRecord = phoneRecord;
+    }
+
     private Map<String, List<String>> phoneRecord;
 
     public PhoneBook(){
