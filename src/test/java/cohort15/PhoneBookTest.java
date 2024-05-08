@@ -31,6 +31,12 @@ class PhoneBookTest {
         phoneTime.add("Newguy Newsly","191-232-4413","191-232-4412","191-232-4413");
         assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
     }
+    @Test
+    void addTest()
+    {
+        assertFalse(phoneTime.getPhoneRecord().isEmpty());
+        assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
+    }
 
     @Test
     void lookup()
