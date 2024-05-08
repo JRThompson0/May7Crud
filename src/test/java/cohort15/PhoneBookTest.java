@@ -1,18 +1,20 @@
 package cohort15;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class PhoneBookTest {
+    static PhoneBook phoneTime = new PhoneBook();
     @BeforeAll
     static void add()
     {
-        PhoneBook phoneTime = new PhoneBook();
         phoneTime.add("Johnny Bungo","610-492-1992");
         phoneTime.add("Johnny Brungo","611-492-1992");
         phoneTime.add("Jonathan Brugo","720-492-1932");
@@ -22,29 +24,32 @@ class PhoneBookTest {
         phoneTime.add("Johnny Bungo","330-492-1992");
         assertFalse(phoneTime.getPhoneRecord().isEmpty());
     }
-    @Test
-    void addListEntry()
+    @BeforeAll
+    static void addListEntry()
     {
         List<String> workList = new ArrayList<String>();
         workList.add("191-232-4411");
         workList.add("191-232-4412");
         workList.add("191-232-4413");
-
+        phoneTime.add("Newguy Newsly","191-232-4413","191-232-4412","191-232-4413");
+        assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
     }
 
     @Test
-    void remove() {
+    void lookup()
+    {
+        List<String> daList = phoneTime.getPhoneRecord().get("Newguy Newsly");
+        assertEquals(daList.stream().toList(), phoneTime.lookup("Newguy Newsly"));
     }
-
     @Test
-    void hasEntry() {
+    void reverseLookUp()
+    {
+        assertEquals("Newguy Newsly",phoneTime.reverseLookUp("191-232-4413"));
     }
-
-    @Test
-    void lookup() {
-    }
-
-    @Test
-    void reverseLookUp() {
+    @AfterAll
+    static void remove()
+    {
+        phoneTime.remove("Newguy Newsly");
+        assertFalse(phoneTime.hasEntry("Newguy Newsly"));
     }
 }

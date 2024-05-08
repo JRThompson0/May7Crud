@@ -93,15 +93,16 @@ public class PhoneBook {
         //iterate through the phonebook to go through all the numbers in each entry.
         while(iteratito.hasNext())
         {
-           List<String> currentList = iteratito.next().getValue();
-           Iterator<String> iteratita = currentList.iterator();
+            Map.Entry<String, List<String>> currentEntry = iteratito.next();
+            List<String> currentNumList = currentEntry.getValue();
+           Iterator<String> iteratita = currentNumList.iterator();
            //iterate through each entry's list
            while(iteratita.hasNext())
            {
                String currentStringNumber = iteratita.next();
                if (currentStringNumber.equals(phoneNumber))
                {
-                   return currentStringNumber;
+                   return currentEntry.getKey();
                }
            }
         }
