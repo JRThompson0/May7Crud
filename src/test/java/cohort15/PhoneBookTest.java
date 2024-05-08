@@ -28,9 +28,6 @@ class PhoneBookTest {
     static void addListEntry()
     {
         List<String> workList = new ArrayList<String>();
-        workList.add("191-232-4411");
-        workList.add("191-232-4412");
-        workList.add("191-232-4413");
         phoneTime.add("Newguy Newsly","191-232-4413","191-232-4412","191-232-4413");
         assertEquals(true,phoneTime.hasEntry("Newguy Newsly"));
     }
