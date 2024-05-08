@@ -32,8 +32,8 @@ class PhoneBookTest {
     {
         assertFalse(phoneTime.getPhoneRecord().isEmpty(), "Empty phonebook");
         assertEquals(true, phoneTime.hasEntry("Newguy Newsly"), "Failed to addAll");
-        assertEquals(3,phoneTime.lookup("Johnny Bungo").size(),"Adding multiple numbers to one key " +
-                "over multiple method calls failed");
+        assertEquals(3,phoneTime.lookup("Johnny Bungo").size(),
+                "Adding multiple numbers to one key over multiple method calls failed");
         List<String> holdList = phoneTime.lookup("Johnny Bungo");
         phoneTime.remove("Johnny Bungo");
         phoneTime.add("Johnny Bungo",holdList);
