@@ -9,22 +9,22 @@ import java.util.*;
 //Key is String and values is arrayList of String
 
 public class PhoneBook {
-    public Map<String, List<String>> getPhoneRecord()
+    public HashMap<String, List<String>> getPhoneRecord()
     {
         return phoneRecord;
     }
-    public void setPhoneRecord(Map<String, List<String>> phoneRecord)
+    public void setPhoneRecord(HashMap<String, List<String>> phoneRecord)
     {
         this.phoneRecord = phoneRecord;
     }
 
-    private Map<String, List<String>> phoneRecord;
+    private HashMap<String, List<String>> phoneRecord;
 
     public PhoneBook(){
         this(new HashMap<>());
     }
 
-    public PhoneBook(Map<String, List<String>> phoneRecord) {
+    public PhoneBook(HashMap<String, List<String>> phoneRecord) {
         this.phoneRecord = phoneRecord;
     }
 
