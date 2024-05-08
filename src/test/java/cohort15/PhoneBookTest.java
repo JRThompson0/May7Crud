@@ -31,10 +31,10 @@ class PhoneBookTest {
         assertEquals(true, phoneTime.hasEntry("Newguy Newsly"), "Failed to addAll");
         assertEquals(3,phoneTime.lookup("Johnny Bungo").size(),
                 "Adding multiple numbers to one key over multiple method calls failed");
-        List<String> holdList = phoneTime.lookup("Johnny Bungo");
+        ArrayList<String> holdList = phoneTime.lookup("Johnny Bungo");
         phoneTime.remove("Johnny Bungo");
-        List<String> newList = new ArrayList<String>(holdList);
-        phoneTime.add("Johnny Bungo",newList); //Stream.toList to make sure it's new.
+        ArrayList<String> newList = new ArrayList<String>(holdList);
+        phoneTime.add("Johnny Bungo",newList);
         assertEquals(holdList,phoneTime.lookup("Johnny Bungo"),
                 "adding a list of numbers failed.");
     }
@@ -51,6 +51,12 @@ class PhoneBookTest {
     {
         assertEquals("Newguy Newsly",phoneTime.reverseLookUp("191-232-4413")
                 ,"reverse-lookup failed");
+    }
+    @Test
+    void reverseLookUpFail()
+    {
+        assertEquals(null, phoneTime.reverseLookUp("13323232132313")
+                , "Why did reverse lookup for nonexistent entry not return null?");
     }
     @AfterAll
     static void remove()
